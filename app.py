@@ -72,7 +72,6 @@ def submit():
         user=username, playlist_id=playlist_id, tracks=songs_uris
     )
     
-    # Add function to create another playlist
     return render_template("submit.html")
 
 
