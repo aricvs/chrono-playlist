@@ -20,16 +20,21 @@ def get_songs(date, username, playlist_name):
     billboard_response.raise_for_status()
 
     soup = BeautifulSoup(billboard_response.text, "html.parser")
-    song_names = [
-        name.get_text().strip() for name in soup.select("h3.c-title.a-no-trucate")
-    ]
-    return song_names
+    return [name.get_text().strip() for name in soup.select("h3.c-title.a-no-trucate")]
+    
+
+def create_playlist(username, playlist_name, sp):
+    playlist = sp.user_playlist_create(
+        user=username,
+        name=playlist_name,
+        public=False,
+        collaborative=False,
+    )
+    return playlist["id"]
 
 @app.route("/")
 def root():
     return render_template("index.html")
-
-
 
 @app.route("/submit", methods=["POST"])
 def submit():
@@ -51,14 +56,7 @@ def submit():
         )
     )
 
-    # TODO separate into a create_playlist function, return playlist_id
-    playlist = sp.user_playlist_create(
-        user=username,
-        name=playlist_name,
-        public=False,
-        collaborative=False,
-    )
-    playlist_id = playlist["id"]
+    playlist_id = create_playlist(username=username, playlist_name=playlist_name, sp=sp)
 
     # TODO separate into a get_uris function, return songs_uris
     songs_uris = []
