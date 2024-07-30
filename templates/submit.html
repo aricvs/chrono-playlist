@@ -3,7 +3,9 @@
     Success
 {% endblock title %}
 {% block content %}
-    <h1>Success!</h1>
-    <p>The playlist was created and the songs were added successfully. Now go back in time and enjoy your tunes!</p>
-    <button onclick="window.history.back();">Create another playlist</button>
+    <div class="container w-50">
+        <h1>Success!</h1>
+        <p>The playlist was created and the songs were added successfully. Now go back in time and enjoy your tunes!</p>
+        <button onclick="window.history.back();" class="btn btn-primary">Create another playlist</button>
+    </div>
 {% endblock content %}

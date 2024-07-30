@@ -3,22 +3,26 @@
     Chrono Playlist
 {% endblock title %}
 {% block content %}
-    <h1>Welcome to Chrono Playlist!</h1>
-    <p>Choose a date and fill in your Spotify username.</p>
-    <p>We will create a private playlist on your account with the top 100 Billboard songs from the chosen date.</p>
-    <p>
-        You can get your username here: <a href="https://www.spotify.com/account/profile/">profile link</a> (it's not your display name, it's your username).
-    </p>
-    <p>
-        Once you click submit, we will look for the songs, create the playlist and add the songs to the playlist, it may take a couple of seconds, up to a minute. Once the process is done you will be taken to a success page. Please wait until the page finishes loading.
-    </p>
-    <form action="{{ url_for("submit") }}" method="POST">
-        <label for="date">Date:</label>
-        <input type="date" name="date" id="date">
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
-        <br>
-        <input type="submit" name="submit" id="Submit">
-    </form>
+    <div class="container w-50">
+        <h1>Welcome to Chrono Playlist!</h1>
+        <p>Choose a date and fill in your Spotify username.</p>
+        <p>We will create a private playlist on your account with the top 100 Billboard songs from the chosen date.</p>
+        <p>
+            You can get your username here: <a href="https://www.spotify.com/account/profile/">profile link</a> (it's not your display name, it's your username).
+        </p>
+        <p>
+            Once you click submit, we will look for the songs, create the playlist and add the songs to the playlist, it may take a couple of seconds, up to a minute. Once the process is done you will be taken to a success page. Please wait until the page finishes loading.
+        </p>
+        <form action="{{ url_for("submit") }}" method="POST">
+            <div class="form-group w-50 mb-3">
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date" class="form-control">
+            </div>
+            <div class="form-group w-50 mb-3">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+            <input type="submit" name="submit" id="Submit" class="btn btn-primary">
+        </form>
+    </div>
 {% endblock content %}
