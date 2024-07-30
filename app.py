@@ -11,7 +11,7 @@ app = Flask(__name__)
 CLIENT_ID = "7079456555d14329bfb98425a4f65306"
 CLIENT_SECRET = "366ab3afe1f8448f80d0c8176a111c56"
 SCOPE = "playlist-modify-private"
-REDIRECT_URI = "https://example.com"
+REDIRECT_URI = "http://localhost:1234"
 
 def get_songs(date, username, playlist_name):
     billboard_response = requests.get(
@@ -60,16 +60,13 @@ def submit():
             redirect_uri=REDIRECT_URI,
             username=username,
             show_dialog=True,
+            open_browser=True,
             cache_path="token.txt",
         )
     )
 
     playlist_id = create_playlist(username=username, playlist_name=playlist_name, sp=sp)
-
     songs_uris = get_uris(song_names=song_names, sp=sp, date=date)
-
-
-    # TODO separate into an add_tracks function
     sp.user_playlist_add_tracks(
         user=username, playlist_id=playlist_id, tracks=songs_uris
     )
