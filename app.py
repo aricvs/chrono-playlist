@@ -2,10 +2,15 @@ import requests
 import spotipy
 from bs4 import BeautifulSoup
 from spotipy.oauth2 import SpotifyOAuth
-from flask import Flask
-from flask import render_template
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
+
+# Constants
+CLIENT_ID = "7079456555d14329bfb98425a4f65306"
+CLIENT_SECRET = "366ab3afe1f8448f80d0c8176a111c56"
+SCOPE = "playlist-modify-private"
+REDIRECT_URI = "https://example.com"
 
 
 @app.route("/")
@@ -13,16 +18,16 @@ def root():
     return render_template("index.html")
 
 
+@app.route("/submit", methods=["POST"])
+def submit():
+    print(request.form["date"])
+    print(request.form["username"])
+    return "Success"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
-# # Constants
-# CLIENT_ID = "7079456555d14329bfb98425a4f65306"
-# CLIENT_SECRET = "366ab3afe1f8448f80d0c8176a111c56"
-# SCOPE = "playlist-modify-private"
-# REDIRECT_URI = "https://example.com"
-
-# app = Flask()
 
 # # Ask for the desired date, and for user's Spotify User ID
 # requested_date = input(
