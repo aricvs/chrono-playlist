@@ -3,17 +3,18 @@ import spotipy
 from bs4 import BeautifulSoup
 from spotipy.oauth2 import SpotifyOAuth
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def root():
-    return "Root"
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
 # # Constants
 # CLIENT_ID = "7079456555d14329bfb98425a4f65306"
