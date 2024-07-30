@@ -32,6 +32,15 @@ def create_playlist(username, playlist_name, sp):
     )
     return playlist["id"]
 
+def get_uris(song_names, sp, date):
+    songs_uris = []
+    for song_name in song_names:
+        song_uri = sp.search(q=f"track: {song_name} year: {date.split('-')[0]}", limit=1)["tracks"]["items"][0]["uri"]
+        # TODO make this show up on the user facing GUI somehow
+        print(f"Loading URI {song_uri.split(":")[2]}")
+        songs_uris.append(song_uri.split(":")[2])
+    return songs_uris
+
 @app.route("/")
 def root():
     return render_template("index.html")
@@ -43,7 +52,6 @@ def submit():
     playlist_name = f"{date} Billboard 100"
     song_names = get_songs(date=date, username=username, playlist_name=playlist_name)
 
-    # TODO into an authenticate function, return sp object, find a way to authenticate without redirect URI
     sp = spotipy.Spotify(
         oauth_manager=SpotifyOAuth(
             client_id=CLIENT_ID,
@@ -58,13 +66,8 @@ def submit():
 
     playlist_id = create_playlist(username=username, playlist_name=playlist_name, sp=sp)
 
-    # TODO separate into a get_uris function, return songs_uris
-    songs_uris = []
-    for song_name in song_names:
-        song_uri = sp.search(q=f"track: {song_name} year: {date.split('-')[0]}", limit=1)["tracks"]["items"][0]["uri"]
-        # TODO make this show up on the user facing GUI somehow
-        print(f"Loading URI {song_uri.split(":")[2]}")
-        songs_uris.append(song_uri.split(":")[2])
+    songs_uris = get_uris(song_names=song_names, sp=sp, date=date)
+
 
     # TODO separate into an add_tracks function
     sp.user_playlist_add_tracks(
