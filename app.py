@@ -73,7 +73,7 @@ def submit():
     )
     
     # Add function to create another playlist
-    return "Success! Playlist created!"
+    return render_template("submit.html")
 
 
 if __name__ == "__main__":
