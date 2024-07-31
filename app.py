@@ -61,7 +61,6 @@ def submit():
             redirect_uri=REDIRECT_URI,
             username=username,
             show_dialog=True,
-            open_browser=True,
             cache_path="token.txt",
         )
     )
