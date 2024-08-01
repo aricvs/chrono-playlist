@@ -10,7 +10,6 @@ app = Flask(__name__)
 CLIENT_ID = "7079456555d14329bfb98425a4f65306"
 CLIENT_SECRET = "366ab3afe1f8448f80d0c8176a111c56"
 SCOPE = "playlist-modify-private"
-# TODO Fix this somehow
 REDIRECT_URI = "http://localhost:5000/auth/redirect"
 
 
