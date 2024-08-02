@@ -11,7 +11,7 @@ app = Flask(__name__)
 CLIENT_ID = "7079456555d14329bfb98425a4f65306"
 CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
 SCOPE = "playlist-modify-private"
-REDIRECT_URI = "https://chrono-playlist.onrender.com"
+REDIRECT_URI = "https://chrono-playlist.onrender.com/callback"
 
 
 # Scrape the Billboard website and get the song names in a list
