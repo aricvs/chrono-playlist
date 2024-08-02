@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 # Constants
 CLIENT_ID = "7079456555d14329bfb98425a4f65306"
-CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
 SCOPE = "playlist-modify-private"
-REDIRECT_URI = "0.0.0.0"
+REDIRECT_URI = "http://localhost:8888/callback"
 
 
 # Scrape the Billboard website and get the song names in a list
